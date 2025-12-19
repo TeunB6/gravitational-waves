@@ -1,0 +1,10 @@
+[project]
+name = "gravitational-waves"
+version = "0.1.0"
+description = "A project on gravitational waves from various angles."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "gwpy>=3.0.13",
+    "pycbc>=2.10.0",
+]
