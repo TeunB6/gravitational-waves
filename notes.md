@@ -1,0 +1,1 @@
+- Get data for masses incl, pos etc. from external data base and use that to generate "pure" signal

@@ -2,10 +2,10 @@ import torch.nn as nn
 from torch import Tensor
 
 class AutoEncoder(nn.Module):
-    def __init__(self, encoer_config: dict, decoder_config: dict):
+    def __init__(self, encoder_config: dict, decoder_config: dict):
         """Initialize an AutoEncoder model.
 
-            encoer_config (dict): Configuration dictionary for encoder layers.
+            encoder_config (dict): Configuration dictionary for encoder layers.
                 Keys are layer names (e.g., 'Linear', 'Conv2d') and values are
                 dictionaries of layer parameters to pass to the layer constructor.
             decoder_config (dict): Configuration dictionary for decoder layers.
@@ -14,7 +14,7 @@ class AutoEncoder(nn.Module):
         """
         super(AutoEncoder, self).__init__()
         self.encoder = nn.Sequential()
-        for layer_name, layer_params in encoer_config.items():
+        for layer_name, layer_params in encoder_config.items():
             layer = getattr(nn, layer_name)(**layer_params)
             self.encoder.add_module(layer_name, layer)
 
