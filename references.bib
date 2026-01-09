@@ -1,0 +1,110 @@
+% AutoEncoder: Most of the model and data stuff is based on this.
+@article{Bacon_2023, 
+doi = {10.1088/2632-2153/acd90f},
+url = {https://doi.org/10.1088/2632-2153/acd90f},
+year = {2023},
+month = {aug},
+publisher = {IOP Publishing},
+volume = {4},
+number = {3},
+pages = {035024},
+author = {Bacon, Philippe and Trovato, Agata and Bejger, Michał},
+title = {Denoising gravitational-wave signals from binary black holes with a dilated convolutional autoencoder},
+journal = {Machine Learning: Science and Technology},
+abstract = {The broadband frequency output of gravitational-wave (GW) detectors is a non-stationary and non-Gaussian time series data stream dominated by noise populated by local disturbances and transient artifacts, which evolve on the same timescale as the GW signals and may corrupt the astrophysical information. We study a denoising algorithm dedicated to expose the astrophysical signals by employing a convolutional neural network in the encoder-decoder configuration, i.e. apply the denoising procedure of coalescing binary black hole signals to the publicly available LIGO O1 time series strain data. The denoising convolutional autoencoder neural network is trained on a dataset of simulated astrophysical signals injected into the real detector’s noise and a dataset of detector noise artifacts (‘glitches’), and its fidelity is tested on real GW events from O1 and O2 LIGO-Virgo observing runs.}
+}
+
+% Alternatives:
+% This is the stationary model thing I talked about before, have not looked into it too much, but should be doable, a lot of these ARIMA-family models are easy to use from statsmodels
+@misc{kim2024autoregressivesearchgravitationalwaves,
+      title={Autoregressive Search of Gravitational Waves: Denoising}, 
+      author={Sangin Kim and C. Y. Hui and Jianqi Yan and Alex P. Leung and Kwangmin Oh and A. K. H. Kong and L. C. -C. Lin and Kwan-Lok Li},
+      year={2024},
+      eprint={2404.05364},
+      archivePrefix={arXiv},
+      primaryClass={astro-ph.HE},
+      url={https://arxiv.org/abs/2404.05364}, 
+}
+
+% Cool algorithm: No ML but seems a bit time consuming to implement
+
+@Article{s25134065,
+AUTHOR = {Xi, Jingyi and Li, Xiaolong and Liu, Yunqing and Xu, Dongpo and Shen, Qiuping and Liu, Hanyang},
+TITLE = {Research on Space-Based Gravitational Wave Signal Denoising Based on Improved VMD with Parrot Algorithm},
+JOURNAL = {Sensors},
+VOLUME = {25},
+YEAR = {2025},
+NUMBER = {13},
+ARTICLE-NUMBER = {4065},
+URL = {https://www.mdpi.com/1424-8220/25/13/4065},
+PubMedID = {40648321},
+ISSN = {1424-8220},
+ABSTRACT = {Gravitational wave (GW) signals are often affected by noise interference in the detection system; in order to attenuate the impact of detector noise and enhance the waveform characteristics of the signal, this paper proposes a space-based GW signal denoising method that combines the Parrot algorithm (PO) with the improved wavelet threshold (IWT) to optimize the variational mode decomposition (VMD). To address the challenge of selecting the number of modes K and the penalty factor α in VMD, PO is introduced to select the optimal parameters, achieving a good balance between global search and local optimization. The components after modal decomposition are divided into preserved modal components and noise modal components, and the IWT is introduced to further denoise the noise modal components; finally, the signal is reconstructed to achieve the purpose of denoising the GW signal. The algorithm is verified by the GW simulation signal and the measured signal. The experimental results show that the algorithm is superior to other algorithms in the noise separation of GW signals, significantly improves the SNR, improves the detection accuracy of GW, and provides a new technical means for the extraction and analysis of GW signals.},
+DOI = {10.3390/s25134065}
+}
+
+% Different ML approach, its a simpler idea, so it is easier to implement with a simpler model architecture, cus their architecture is a bit complicated imo
+@article{Lee_2025,
+   title={Denoising gravitational wave with deep learning in the time-frequency domain},
+   volume={98},
+   ISSN={0577-9073},
+   url={http://dx.doi.org/10.1016/j.cjph.2025.11.013},
+   DOI={10.1016/j.cjph.2025.11.013},
+   journal={Chinese Journal of Physics},
+   publisher={Elsevier BV},
+   author={Lee, Yi-De and Yo, Hwei-Jang},
+   year={2025},
+   month=dec, pages={1069–1083} }
+
+
+% Main packages used:
+
+@misc{paszke2019pytorchimperativestylehighperformance,
+      title={PyTorch: An Imperative Style, High-Performance Deep Learning Library}, 
+      author={Adam Paszke and Sam Gross and Francisco Massa and Adam Lerer and James Bradbury and Gregory Chanan and Trevor Killeen and Zeming Lin and Natalia Gimelshein and Luca Antiga and Alban Desmaison and Andreas Köpf and Edward Yang and Zach DeVito and Martin Raison and Alykhan Tejani and Sasank Chilamkurthy and Benoit Steiner and Lu Fang and Junjie Bai and Soumith Chintala},
+      year={2019},
+      eprint={1912.01703},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/1912.01703}, 
+}
+
+@software{alex_nitz_2024_10473621,
+  author       = {Alex Nitz and
+                  Ian Harry and
+                  Duncan Brown and
+                  Christopher M. Biwer and
+                  Josh Willis and
+                  Tito Dal Canton and
+                  Collin Capano and
+                  Thomas Dent and
+                  Larne Pekowsky and
+                  Gareth S Cabourn Davies and
+                  Soumi De and
+                  Miriam Cabero and
+                  Shichao Wu and
+                  Andrew R. Williamson and
+                  Bernd Machenschalk and
+                  Duncan Macleod and
+                  Francesco Pannarale and
+                  Prayush Kumar and
+                  Steven Reyes and
+                  dfinstad and
+                  Sumit Kumar and
+                  Márton Tápai and
+                  Leo Singer and
+                  Praveen Kumar and
+                  veronica-villa and
+                  maxtrevor and
+                  Bhooshan Uday Varsha Gadre and
+                  Sebastian Khan and
+                  Stephen Fairhurst and
+                  Arthur Tolley},
+  title        = {gwastro/pycbc: v2.3.3 release of PyCBC},
+  month        = jan,
+  year         = 2024,
+  publisher    = {Zenodo},
+  version      = {v2.3.3},
+  doi          = {10.5281/zenodo.10473621},
+  url          = {https://doi.org/10.5281/zenodo.10473621},
+}
