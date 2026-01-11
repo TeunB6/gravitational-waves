@@ -48,3 +48,6 @@ class AutoEncoder(nn.Module):
             Tensor: Reconstructed output tensor.
         """
         return self.decoder(x)
+    
+class DilatedAutoEncoder(AutoEncoder):
+    NotImplementedError("DilatedAutoEncoder is not yet implemented.")
