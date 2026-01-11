@@ -1,0 +1,1 @@
+The encoder and decoder configs are taken from Bacon et al. 
