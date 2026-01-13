@@ -7,7 +7,6 @@ from torch.nn import Module
 from torch import save
 
 
-
 def get_l1_zenith_radec(gps_time):
     """
     Get the RA and Dec of the point directly overhead LIGO Livingston at a given GPS time.

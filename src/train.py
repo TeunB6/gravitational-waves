@@ -21,7 +21,6 @@ class Trainer:
         self.val_loader = val_loader
         self.optimizer = optimizer
         self.criterion = criterion
-        
 
     def train_epoch(self):
         """Train the model for one epoch."""
@@ -36,11 +35,11 @@ class Trainer:
     def validate(self, dataloader: DataLoader, criterion=nn.MSELoss()) -> float:
         """
         Validate the model.
-        
+
         Args:
             dataloader (DataLoader): DataLoader for validation data.
             criterion: Loss function to use for validation.
-        
+
         Returns:
             float: Average validation loss.
         """
@@ -64,21 +63,21 @@ class Trainer:
             dict: Training history containing training and validation losses.
         """
         tqdm_iter = tqdm(range(epochs), desc="Training Epochs", unit="epoch")
-        
-        history = {"train_loss": [], "val_loss": []}            
-        
+
+        history = {"train_loss": [], "val_loss": []}
+
         for epoch in tqdm_iter:
             self.train_epoch()
 
             if epoch % UPDATE_FREQ == 0 or epoch == epochs - 1:
                 val_loss = self.validate(self.val_loader, self.criterion)
                 training_loss = self.validate(self.train_loader, self.criterion)
-                
+
                 history["train_loss"].append(training_loss)
                 history["val_loss"].append(val_loss)
-                
+
                 tqdm_iter.set_postfix(
                     {"Training Loss": training_loss, "Validation Loss": val_loss}
                 )
-                
+
         return history
