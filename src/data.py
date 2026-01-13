@@ -27,6 +27,7 @@ BUFFER = 4.0  # seconds of standard buffer time around signal
 
 # Logging
 import logging
+Path(ROOT_DIR / 'logs').mkdir(parents=True, exist_ok=True)
 logging.basicConfig(filename=ROOT_DIR / 'logs/data_loading.log', encoding='utf-8', filemode='w', format='%(asctime)s %(levelname)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S', level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
@@ -114,7 +115,7 @@ class GravWaveDataset(Dataset):
             # Should be impossible due to choice of random bounds but log just in case
             if sample_duration + shift < 0:
                 logger.warning(f"Signal start out of bounds after shift: start_time={signal.start_time}, shift={shift}")
-            if signal.end_time - time > sample_duration:
+            if signal.end_time - time > sample_duration + BUFFER:
                 logger.warning(f"Signal end out of bounds after shift: end_time={signal.end_time}, shift={shift}")
                 
             noisy = noise.inject(signal)
