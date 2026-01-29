@@ -7,6 +7,7 @@ from src.train import Trainer
 from torch.optim import Adam
 from torch import save
 from pathlib import Path
+import json
 
 
 dataset = GravWaveDataset(
@@ -17,15 +18,11 @@ print(
     f"Shape of first noisy signal: {dataset[0][0].shape}"
 )  # Shape of the first noisy signal
 
-for idx in range(100):
-    plt.plot(dataset[idx][0].numpy(), label="Noisy Signal")
-    plt.plot(dataset[idx][1].numpy(), label="Clean Signal")
-    plt.legend()
-    plt.show()
-    sleep(0.2)
-    plt.close("all")
+Path("./configs/models").mkdir(parents=True, exist_ok=True)
+encoder_config = json.load(open("configs/models/encoder.json"))
+decoder_config = json.load(open("configs/models/decoder.json"))
 
-model = AutoEncoder()
+model = AutoEncoder(encoder_config, decoder_config)
 train_data, val_data = random_split(dataset, [800, 200])
 train_loader = DataLoader(train_data, batch_size=32, shuffle=True)
 val_loader = DataLoader(val_data, batch_size=32, shuffle=False)

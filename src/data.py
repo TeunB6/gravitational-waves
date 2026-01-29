@@ -10,6 +10,7 @@ from tqdm import tqdm
 
 from src.utils import get_l1_zenith_radec
 from pathlib import Path
+import logging
 
 from typing import Generator, Tuple
 
@@ -31,18 +32,23 @@ BUFFER = 4.0  # seconds of standard buffer time around signal
 
 
 # Logging
-import logging
-
-Path(ROOT_DIR / "logs").mkdir(parents=True, exist_ok=True)
-logging.basicConfig(
-    filename=ROOT_DIR / "logs/data_loading.log",
-    encoding="utf-8",
-    filemode="w",
-    format="%(asctime)s %(levelname)s: %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-    level=logging.DEBUG,
-)
+(ROOT_DIR  / "logs").mkdir(parents=True, exist_ok=True)
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+if not logger.handlers:
+    (ROOT_DIR / "logs").mkdir(parents=True, exist_ok=True)
+    handler = logging.FileHandler(
+        ROOT_DIR / "logs/data.log",
+        encoding="utf-8",
+        mode="w"
+    )
+    formatter = logging.Formatter(
+        "%(asctime)s %(levelname)s: %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S"
+    )
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
 
 
 class GravWaveDataset(Dataset):
@@ -108,7 +114,13 @@ class GravWaveDataset(Dataset):
         Returns:
             torch.Tensor: The sample at the specified index.
         """
-        return self._data[idx]
+        obs, tar = self._data[idx][0], self._data[idx][1]  # noisy, clean
+        
+        # normalize to -1 to 1
+        obs = (obs - obs.min()) / (obs.max() - obs.min()) * 2 - 1
+        tar = (tar - tar.min()) / (tar.max() - tar.min()) * 2 - 1
+        
+        return obs, tar
 
     def __len__(self) -> int:
         """

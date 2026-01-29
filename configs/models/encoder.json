@@ -1,0 +1,51 @@
+{
+    "name" : "Encoder",
+    "layers" : [
+        {
+            "name" : "BatchNorm1d",
+            "params" : {
+                "num_features" : 1
+            }
+        },
+        {
+            "name" : "Conv1d",
+            "params" : {
+                "in_channels" : 1,
+                "out_channels" : 1,
+                "padding" : "same",            
+                "kernel_size" : 128
+            }
+        },
+        {
+            "name" : "MaxPool1d",
+            "params" : {
+                "kernel_size" : 2
+            }
+        },
+        {
+            "name" : "Conv1d",
+            "params" : {
+                "in_channels" : 1,
+                "out_channels" : 1,
+                "padding" : "same",
+                "kernel_size" : 64
+            }
+            
+        },
+        {
+            "name" : "MaxPool1d",
+            "params" : {
+                "kernel_size" : 2
+            }
+        },
+        {
+            "name" : "Conv1d",
+            "params" : {
+                "in_channels" : 1,
+                "out_channels" : 1,
+                "padding" : "same",
+                "kernel_size" : 32
+            }
+        }
+    ]
+}
